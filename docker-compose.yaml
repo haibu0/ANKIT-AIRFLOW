@@ -22,12 +22,13 @@ x-airflow-common: &airflow-common
     SNOWFLAKE_PASSWORD: ${SNOWFLAKE_PASSWORD}
     OPENAI_API_KEY: ${OPENAI_API_KEY}
     SAMPLE_N: ${SAMPLE_N:-5}
-    AIRFLOW_CONN_SNOWFLAKE_DEFAULT: '{"conn_type":"snowflake","login":"${SNOWFLAKE_USER}","password":"${SNOWFLAKE_PASSWORD}","schema":"RAW","extra":{"account":"${SNOWFLAKE_ACCOUNT}","warehouse":"ZOMATO_WH","database":"ZOMATO","role":"DBT_ROLE"}}'
+    AIRFLOW_CONN_SNOWFLAKE_DEFAULT: '{"conn_type":"snowflake","login":"${SNOWFLAKE_USER}","password":"${SNOWFLAKE_PASSWORD}","schema":"RAW","extra":{"account":"${SNOWFLAKE_ACCOUNT}","warehouse":"${SNOWFLAKE_WAREHOUSE}","database":"${SNOWFLAKE_DATABASE}","role":"${SNOWFLAKE_ROLE}"}}'
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ../ANKIT-DBT/spotify_ts:/opt/airflow/dbt/spotify_ts   # your dbt project
-    - ../ai:/opt/airflow/ai                       # the enrich_reviews.py script
+    - ../ai:/opt/airflow/ai          
+    - ~/.dbt:/home/airflow/.dbt:ro             # the enrich_reviews.py script
   depends_on:
     postgres:
       condition: service_healthy

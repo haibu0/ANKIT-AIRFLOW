@@ -4,15 +4,35 @@
 !.env.example
 *.pem
 *.key
+secrets/
+*.p8
+credentials.json
+service_account.json
 
-# Airflow logs and runtime artifacts
+# Airflow runtime artifacts and logs
 logs/
+*.log
 airflow.cfg
 airflow.db
 webserver_config.py
+standalone_admin_password.txt
+airflow-webserver.pid
+airflow-worker.pid
 *.pid
+unittests.cfg
 
-# Python artifacts
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+airflow-env/
+*-env/
+*venv*/
+env.bak/
+venv.bak/
+
+# Python artifacts and caches
 __pycache__/
 *.py[cod]
 *$py.class
@@ -33,24 +53,35 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 
-# Virtual environments
-venv/
-.venv/
-env/
-ENV/
-env.bak/
-venv.bak/
+# dbt artifacts
+target/
+dbt_packages/
+dbt_modules/
+profiles.yml
 
 # IDE and OS files
 .vscode/
 .idea/
+.cursor/
 *.sublime-project
 *.sublime-workspace
 .DS_Store
 Thumbs.db
 Desktop.ini
+ehthumbs.db
 
 # Docker / Container runtime
 *.override.yml
 *.override.yaml
+
+# Local notes / setup documentation
+msr-dbt-setup.txt
+
+# cursor
+.cursorrules
