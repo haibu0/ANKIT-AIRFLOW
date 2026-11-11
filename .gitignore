@@ -9,23 +9,30 @@
 *.cer
 secrets/
 credentials/
+*.credentials.json
+*service-account*.json
+.aws/
 msr-dbt-setup.txt
 
 # Airflow logs and runtime artifacts
 logs/
+*.log
 airflow.cfg
 airflow.db
 *.sqlite
 *.sqlite3
+*.db
 webserver_config.py
 standalone_admin_password.txt
+simple_auth_manager_passwords.json*
 *.pid
 airflow-*.pid
 
-# dbt artifacts
+# dbt artifacts and local credentials
 target/
 dbt_packages/
 dbt_modules/
+profiles.yml
 
 # Python artifacts
 __pycache__/
@@ -73,9 +80,22 @@ airflow-env/
 *.sublime-project
 *.sublime-workspace
 .DS_Store
-Thumbs.db
-Desktop.ini
+.DS_Store?
+._*
+[Tt]humbs.db
+[Dd]esktop.ini
+*.swp
+*.swo
+*~
+.ipynb_checkpoints/
 
 # Docker / Container runtime
 *.override.yml
 *.override.yaml
+
+# Local data extracts / temporary dumps
+*.parquet
+*.csv
+*.tsv
+*.jsonl
+*.duckdb
